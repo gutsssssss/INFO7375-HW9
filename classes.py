@@ -54,6 +54,7 @@ class Neuron:
     def update(self, learning_rate: float) -> None:
         if arg.normalization is None:
             self.weights -= torch.mul(learning_rate, self.gradients_w)
+            # Implement dropout algorithms in your neural network @HW9
         if arg.normalization == 'L2':
             self.weights = torch.mul(1 - learning_rate * arg.lamda, self.weights) - torch.mul(learning_rate,
                                                                                               self.gradients_w)
