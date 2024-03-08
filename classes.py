@@ -55,7 +55,7 @@ class Neuron:
         if arg.normalization is None:
             self.weights -= torch.mul(learning_rate, self.gradients_w)
 
-            # Implement dropout algorithms in your neural network @HW9
+            # Implement regularization algorithms in your neural network @HW9
 
         if arg.normalization == 'L2':
             self.weights = torch.mul(1 - learning_rate * arg.lamda, self.weights) - torch.mul(learning_rate,
@@ -68,6 +68,7 @@ class Neuron:
     def backward(self, gradient_z: torch.Tensor, inputs: torch.Tensor):
         self.gradients_w = torch.mm(torch.transpose(inputs, 0, 1), gradient_z) / len(gradient_z)
 
+# Implement dropout algorithms in your neural network @HW9
 
 def binomialMask():
     # 创建二项分布
@@ -89,6 +90,9 @@ class Layer:
 
     def forward(self, inputs: torch.Tensor, test: bool = False) -> torch.Tensor:
         if self.dropout:
+
+            # Implement dropout algorithms in your neural network @HW9
+
             mask = binomialMask()
             self.inputs = torch.mul(mask, inputs)
             if test:
